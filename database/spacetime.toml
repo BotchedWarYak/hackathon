@@ -1,0 +1,10 @@
+[package]
+name = "hackathon-db"
+version = "0.1.0"
+
+[database]
+name = "hackathon_db"
+address = "localhost:3001"
+
+[build]
+target = "wasm32-unknown-unknown"

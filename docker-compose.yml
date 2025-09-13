@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=development
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - SPACETIME_DB_URL=${SPACETIME_DB_URL}
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - spacetimedb
+
+  spacetimedb:
+    image: clockworklabs/spacetimedb:latest
+    ports:
+      - "3001:3001"
+    environment:
+      - SPACETIMEDB_LOGS_PATH=/var/lib/spacetimedb/logs
+    volumes:
+      - spacetimedb_data:/var/lib/spacetimedb
+      - ./database:/app/database
+    command: ["start", "--bind", "0.0.0.0:3001"]
+
+volumes:
+  spacetimedb_data:
