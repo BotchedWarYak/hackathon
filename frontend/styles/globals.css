@@ -23,4 +23,10 @@ a {
     color: white;
     background: black;
   }
+
+  /* Ensure form inputs always have proper contrast */
+  input, select, textarea {
+    color: #2d3748 !important;
+    background: white !important;
+  }
 }
