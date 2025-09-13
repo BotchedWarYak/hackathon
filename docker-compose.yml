@@ -25,6 +25,9 @@ services:
       - spacetimedb
 
   spacetimedb:
+    build: 
+      context: ./database
+      dockerfile: Dockerfile
     image: clockworklabs/spacetime:latest
     ports:
       - "3001:3001"
@@ -34,6 +37,11 @@ services:
       - spacetimedb_data:/var/lib/spacetimedb
       - ./database:/app/database
     command: ["start", "--bind", "0.0.0.0:3001"]
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "3001"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 volumes:
   spacetimedb_data:

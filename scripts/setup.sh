@@ -9,25 +9,7 @@ if [ ! -f .env ]; then
     echo "Please edit .env file with your actual API keys and configuration"
 fi
 
-# Install frontend dependencies
-echo "Installing frontend dependencies..."
-cd frontend
-npm install
-cd ..
-
-# Install backend dependencies
-echo "Installing backend dependencies..."
-cd backend
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-cd ..
-
-# Build SpacetimeDB module
-echo "Building SpacetimeDB module..."
-cd database
-cargo build --release
-cd ..
+# All dependencies will be installed in Docker containers
 
 echo "Setup complete!"
 echo ""

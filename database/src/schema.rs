@@ -1,4 +1,10 @@
-use spacetimedb::{spacetimedb, Identity, ReducerContext, Table, Timestamp};
+use spacetimedb::{
+    spacetimedb,
+    Identity,
+    ReducerContext,
+    timestamp::Timestamp,
+    table::{TableIter, TableType, Table},
+};
 use serde::{Deserialize, Serialize};
 
 #[spacetimedb(table)]
