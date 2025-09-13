@@ -1,0 +1,648 @@
+.stepContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #2d3748;
+}
+
+.stepHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.stepHeader h2 {
+  margin: 0 0 0.5rem 0;
+  color: #2d3748;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.stepHeader p {
+  margin: 0;
+  color: #718096;
+  font-size: 1.1rem;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipIcon {
+  cursor: help;
+  font-size: 0.9rem;
+}
+
+.tooltipText {
+  visibility: hidden;
+  width: 250px;
+  background: #1a202c;
+  color: white;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1000;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -125px;
+  font-size: 0.85rem;
+  font-weight: normal;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tooltipText::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #1a202c transparent transparent transparent;
+}
+
+.tooltip:hover .tooltipText {
+  visibility: visible;
+}
+
+.helpText {
+  font-size: 0.85rem;
+  color: #718096;
+  font-weight: normal;
+}
+
+.suggestion {
+  font-size: 0.85rem;
+  color: #667eea;
+  font-weight: normal;
+}
+
+.input, .select, .textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  background: white;
+  color: #2d3748;
+}
+
+.input:focus, .select:focus, .textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.input.error, .select.error, .textarea.error {
+  border-color: #e53e3e;
+}
+
+.input.readonly {
+  background: #f7fafc;
+  color: #718096;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.radioOption {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radioOption:hover {
+  border-color: #cbd5e0;
+  background: #f7fafc;
+}
+
+.radioOption:has(input:checked) {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.radio {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  accent-color: #667eea;
+}
+
+.radioContent {
+  flex: 1;
+}
+
+.radioLabel {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.25rem;
+}
+
+.radioDescription {
+  color: #718096;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkboxOption {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checkboxOption:hover {
+  border-color: #cbd5e0;
+  background: #f7fafc;
+}
+
+.checkboxOption:has(input:checked) {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.checkbox {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  accent-color: #667eea;
+}
+
+.checkboxContent {
+  flex: 1;
+}
+
+.checkboxLabel {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.25rem;
+}
+
+.checkboxDescription {
+  color: #718096;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.checkboxGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.75rem;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checkboxItem:hover {
+  border-color: #cbd5e0;
+  background: #f7fafc;
+}
+
+.checkboxItem:has(input:checked) {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.checkboxText {
+  color: #2d3748;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.sliderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #e2e8f0;
+  outline: none;
+  transition: background 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #667eea;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #667eea;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+.summaryBox {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.summaryBox h4 {
+  margin: 0 0 1rem 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.summaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summaryLabel {
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.summaryValue {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.errorMessage {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.stepActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.button {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.button.primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.button.secondary {
+  background: white;
+  color: #4a5568;
+  border-color: #e2e8f0;
+}
+
+.button.secondary:hover:not(:disabled) {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+/* Review Step Specific Styles */
+.reviewContent {
+  position: relative;
+}
+
+.reviewSections {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.reviewSection {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.reviewSection h3 {
+  margin: 0 0 1rem 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.reviewData {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.75rem;
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.reviewLabel {
+  color: #718096;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.reviewValue {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.estimatesSection {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.estimatesSection h3 {
+  margin: 0 0 1.5rem 0;
+  color: #2d3748;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.estimateGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.estimateItem {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.estimateIcon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.estimateValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 0.25rem;
+}
+
+.estimateLabel {
+  color: #718096;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.timelinePreview {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.timelinePreview h4 {
+  margin: 0 0 1rem 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.timelineItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: #f7fafc;
+  border-radius: 6px;
+}
+
+.timelineIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.timelineContent {
+  flex: 1;
+}
+
+.timelineTitle {
+  color: #2d3748;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.timelineDate {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.creatingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.creatingModal {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+}
+
+.creatingModal h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2d3748;
+  font-size: 1.25rem;
+}
+
+.creatingModal p {
+  margin: 0;
+  color: #718096;
+  font-size: 1rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.5rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.createButton {
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .checkboxGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewData {
+    grid-template-columns: 1fr;
+  }
+
+  .estimateGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stepActions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .creatingModal {
+    margin: 1rem;
+    padding: 2rem;
+  }
+}
