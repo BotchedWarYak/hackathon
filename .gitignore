@@ -1,6 +1,12 @@
-# Environment variables
+# Environment variables and secrets
 .env
 .env.local
+secrets.local.json
+secrets.*.json
+vault/secrets/
+*.key
+*.pem
+*.crt
 
 # Dependencies
 node_modules/
@@ -40,5 +46,6 @@ logs/
 # Docker
 .docker/
 
-# SpacetimeDB
-spacetimedb_data/
+# Vault data
+vault_data/
+vault/data/

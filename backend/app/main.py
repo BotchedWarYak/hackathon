@@ -1,12 +1,23 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
 from app.core.config import settings
 from app.routes import auth, chat, users
+from app.database.connection import init_database, close_db_connections
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    init_database()
+    yield
+    # Shutdown
+    close_db_connections()
 
 app = FastAPI(
     title="Hackathon API",
-    description="FastAPI backend with Gemini AI and SpacetimeDB",
+    description="FastAPI backend with Gemini AI and SQL Server",
     version="1.0.0",
+    lifespan=lifespan
 )
 
 app.add_middleware(

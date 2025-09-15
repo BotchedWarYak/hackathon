@@ -19,21 +19,40 @@ services:
       - "8000:8000"
     environment:
       - ENVIRONMENT=development
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
-      - SPACETIME_DB_URL=${SPACETIME_DB_URL}
+      - VAULT_ADDR=http://vault:8200
+      - VAULT_TOKEN=dev-only-token
     depends_on:
-      - spacetimedb
+      - sqlserver
+      - vault
 
-  spacetimedb:
-    image: clockworklabs/spacetime:latest
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
     ports:
-      - "3001:3001"
+      - "1433:1433"
     environment:
-      - SPACETIMEDB_LOGS_PATH=/var/lib/spacetimedb/logs
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrong!Passw0rd
+      - MSSQL_PID=Developer
     volumes:
-      - spacetimedb_data:/var/lib/spacetimedb
-      - ./database:/app/database
-    command: ["start", "--bind", "0.0.0.0:3001"]
+      - sqlserver_data:/var/opt/mssql
+      - ./database/init:/docker-entrypoint-initdb.d
+
+  vault:
+    image: hashicorp/vault:latest
+    ports:
+      - "8200:8200"
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=dev-only-token
+      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+      - VAULT_ADDR=http://0.0.0.0:8200
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - vault_data:/vault/data
+      - ./vault/config:/vault/config
+      - ./vault/init:/vault/init
+    command: ["vault", "server", "-dev", "-dev-root-token-id=dev-only-token"]
 
 volumes:
-  spacetimedb_data:
+  sqlserver_data:
+  vault_data:
